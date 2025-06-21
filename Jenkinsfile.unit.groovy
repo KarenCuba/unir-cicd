@@ -52,6 +52,16 @@ pipeline {
         }
         failure {
             echo "FALLO EN EL JOB: ${env.JOB_NAME}, EJECUCIÓN #${env.BUILD_NUMBER}"
+            mail to: 'destinatario@empresa.com',
+                 subject: "❌ Fallo en ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: """Hola,
+
+                El pipeline '${env.JOB_NAME}' ha fallado en la ejecución número #${env.BUILD_NUMBER}.
+
+                Revisa los detalles en Jenkins: ${env.BUILD_URL}
+
+                Saludos,
+                Jenkins"""
         }
     }
 }
