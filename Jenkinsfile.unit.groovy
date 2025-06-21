@@ -1,11 +1,20 @@
 pipeline {
     agent {
         docker {
-            image 'docker:24.0.7-dind'
+            image 'buildpack-deps:bullseye'
             args '-v /var/run/docker.sock:/var/run/docker.sock'            
         }
     }
     stages {
+        stage('Prepare') {
+            steps {
+                echo 'Instalando herramientas necesarias...'
+                sh '''
+                    apt-get update
+                    apt-get install -y make git
+                '''
+            }
+        }        
         stage('Source') {
             steps {
                 git 'https://github.com/KarenCuba/unir-cicd.git'
