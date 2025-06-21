@@ -31,7 +31,6 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'make test-unit'
                 }
-                sh 'mkdir -p results && echo "<testsuite></testsuite>" > results/unit_result.xml'
                 archiveArtifacts artifacts: 'results/unit_result.xml'
             }
         }
@@ -41,7 +40,6 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'make test-api'
                 }
-                sh 'mkdir -p results && echo "<testsuite></testsuite>" > results/api_result.xml'
                 archiveArtifacts artifacts: 'results/api_*.xml'
             }
         }
@@ -51,7 +49,6 @@ pipeline {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'make test-e2e'
                 }
-                sh 'mkdir -p results && echo "<testsuite></testsuite>" > results/e2e_result.xml'
                 archiveArtifacts artifacts: 'results/e2e_*.xml'
             }
         }
