@@ -10,8 +10,8 @@ pipeline {
             steps {
                 echo 'Instalando herramientas necesarias...'
                 sh '''
-                    apt-get update
-                    apt-get install -y make git
+                    sudo apt-get update
+                    sudo apt-get install -y make git
                 '''
             }
         }        
