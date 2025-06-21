@@ -1,14 +1,14 @@
 pipeline {
     agent {
         docker {
-            image 'buildpack-deps:bullseye' // Imagen con make, git, etc.
-            args '-v /var/run/docker.sock:/var/run/docker.sock' // opcional, si necesitas acceso a Docker desde el contenedor
+            image 'docker:24.0.7-dind'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'            
         }
     }
     stages {
         stage('Source') {
             steps {
-                git 'https://github.com/srayuso/unir-cicd.git'
+                git 'https://github.com/KarenCuba/unir-cicd.git'
             }
         }
         stage('Build') {
