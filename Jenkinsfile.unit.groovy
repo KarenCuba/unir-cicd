@@ -11,7 +11,7 @@ pipeline {
                 echo 'Instalando herramientas necesarias...'
                 sh '''
                     apt-get update
-                    apt-get install -y make git
+                    apt-get install -y make git docker.io
                 '''
             }
         }
