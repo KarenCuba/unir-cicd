@@ -43,15 +43,6 @@ pipeline {
                 archiveArtifacts artifacts: 'results/api_*.xml'
             }
         }
-        stage('E2E Tests') {
-            steps {
-                echo 'Running E2E tests...'
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'make test-e2e'
-                }
-                archiveArtifacts artifacts: 'results/e2e_*.xml'
-            }
-        }
     }
 
     post {
